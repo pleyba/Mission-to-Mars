@@ -59,17 +59,14 @@
         <div class="page-header">
           <h2 class="text-center">Mars Hemispheres</h2>
         </div>
-
-        {% for hemisphere in mars.hemispheres %}
-        <div class="col-md-6">
-          <div class="thumbnail">
-            <img src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="...">
-            <div class="caption">
-              <h3>{{hemisphere.title}}</h3>
-            </div>
-          </div>
+        {% for hemisphere in mars.hemispheres %}   
+        <div class="col-md-6 border border-secondary" style="background-color:lightgrey;">
+          <h5 class="text-info">{{hemisphere.title}}</h5>
+          <a href={{hemisphere.img_url}}>
+            <img class="img-responsive" src={{hemisphere.img_url}} alt={{hemisphere.title}} style="width:100%">
+          </a>
         </div>
-        {% endfor %}
+          {% endfor %}
       </div>
     </div>
   </body>
