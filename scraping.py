@@ -9,16 +9,16 @@ def scrape_all():
     # Initiate headless driver for deployment
     browser = Browser("chrome", executable_path="C:\\bin\\chromedriver.exe", headless=True)
 
-    news_title, news_paragraph = mars_news(browser)
+    news_title, news_p = mars_news(browser)
+    hemisphere_image_urls = hemispheres(browser)
 
-    # Run all scraping functions and store results in a dictionary
+
     data = {
         "news_title": news_title,
-        "news_paragraph": news_paragraph,
+        "news_paragraph": news_p,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
         "last_modified": dt.datetime.now(),
-        "weather": mars_weather,
         "hemispheres": hemisphere_image_urls
     }
 
@@ -103,6 +103,11 @@ def mars_facts():
     return df.to_html(classes="table table-striped")
 
 def hemisphere(browser):
+
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
+
+    hemisphere_image_urls = []
     for x in range(4):
         hemisphere = {}
 
