@@ -7,10 +7,11 @@ import datetime as dt
 
 def scrape_all():
     # Initiate headless driver for deployment
-    browser = Browser("chrome", executable_path="C:\\bin\\chromedriver.exe", headless=True)
+    executable_path = {'executable_path':'C:\\bin\\chromedriver.exe'}
+    browser = Browser('chrome', **executable_path, headless=True, incognito=True)
 
     news_title, news_p = mars_news(browser)
-    hemisphere_image_urls = hemispheres(browser)
+    hemisphere_image_urls = hemisphere(browser)
 
 
     data = {
